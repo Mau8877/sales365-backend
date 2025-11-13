@@ -4,6 +4,7 @@ from .models import Bitacora
 from .serializers import BitacoraSerializer
 from config.pagination import CustomPageNumberPagination
 from apps.users.utils import get_user_tienda
+from django_filters.rest_framework import DjangoFilterBackend
 
 class IsAdminOrSuperAdmin(permissions.BasePermission):
     """Permiso para solo permitir acceso a usuarios con rol Admin o SuperAdmin."""
@@ -21,9 +22,14 @@ class BitacoraViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = BitacoraSerializer
     pagination_class = CustomPageNumberPagination
     permission_classes = [permissions.IsAuthenticated, IsAdminOrSuperAdmin]
-    filter_backends = [OrderingFilter, SearchFilter]
+    filter_backends = [OrderingFilter, SearchFilter, DjangoFilterBackend]
     ordering_fields = ['timestamp', 'user__email', 'tienda__nombre', 'ip', 'accion']
     search_fields = ['accion', 'objeto', 'user__email', 'tienda__nombre', 'timestamp', 'ip']
+    filterset_fields = {
+        'timestamp': ['gte', 'lte'], 
+        'user__email': ['exact', 'icontains'],
+        'ip': ['exact'], 
+    }
 
     def get_queryset(self):
         user = self.request.user

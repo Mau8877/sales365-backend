@@ -67,7 +67,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().select_related('rol', 'profile').prefetch_related('admin_profile__tienda', 'vendedor_profile__tienda')
     serializer_class = UserSerializer
     pagination_class = CustomPageNumberPagination
-    ordering_fields = ['email', 'rol__nombre', 'profile__apellido'] 
+    ordering_fields = ['email', 'rol__nombre', 'profile__apellido', 'fecha_creacion']
     search_fields = ['email', 'profile__nombre', 'profile__apellido'] 
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
     filterset_fields = {
