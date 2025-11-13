@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-d&o&a1r155@=whab4kilnwy-i8ivxlb1_a%!=-+eey@hrof*7c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["10.0.2.2","127.0.0.1","localhost",'sales365-backend.onrender.com']
-
+#ALLOWED_HOSTS = ["10.0.2.2","127.0.0.1","localhost",'sales365-backend.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -101,16 +101,16 @@ MIDDLEWARE = [
 ]
 
 # Configuración CORS
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://smartsales-365.netlify.app"
-]
+#CORS_ALLOWED_ORIGINS = [
+#    "http://localhost:5173",
+#    "http://127.0.0.1:5173",
+#    "http://localhost:3000",
+#    "http://127.0.0.1:3000",
+#    "https://smartsales-365.netlify.app"
+#]
 
 # O si quieres permitir todos los origins en desarrollo:
-# CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo
+CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo
 
 # Headers permitidos
 CORS_ALLOW_HEADERS = [
